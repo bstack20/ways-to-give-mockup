@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ways to Give | Children's Hospital Colorado Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Actual CHC Foundation brand, pulled from logo + live site */
+    --chc-blue: #0057a8;          /* Primary wordmark blue */
+    --chc-blue-dark: #003d7a;     /* Darker shade for hero background */
+    --chc-blue-darker: #002855;   /* Deepest for depth in hero */
+    --chc-blue-light: #e6f0fa;    /* Light wash background */
+    --chc-magenta: #c8156e;       /* Donate button color */
+    --chc-magenta-dark: #a21058;
+    --chc-yellow: #f5c518;        /* Accent underline / logo balloon yellow */
+    --chc-orange: #f5841f;        /* Logo balloon orange */
+    --chc-red: #e63946;           /* Logo balloon red */
+
+    --ink: #1a1d1f;
+    --ink-70: #4a4e52;
+    --ink-50: #6b7074;
+    --line: #e4e4e0;
+    --bg-soft: #f2f2f0;           /* Sidebar gray in live site */
+    --bg: #ffffff;
+    --white: #ffffff;
+    --radius: 6px;
+    --radius-lg: 10px;
+    --shadow-sm: 0 1px 2px rgba(0,40,85,0.05), 0 2px 8px rgba(0,40,85,0.04);
+    --shadow-md: 0 4px 16px rgba(0,40,85,0.08), 0 2px 4px rgba(0,40,85,0.04);
+    --shadow-lg: 0 20px 48px rgba(0,40,85,0.14), 0 4px 12px rgba(0,40,85,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito Sans', -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ========== TOP NAV (matches live site) ========== */
+  .nav {
+    background: var(--white);
+    padding: 20px 0 14px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 18px;
+  }
+  .nav-utility {
+    display: flex;
+    gap: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--chc-blue);
+  }
+  .nav-utility a {
+    color: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  .nav-utility a:hover { color: var(--chc-magenta); }
+  .nav-utility .divider {
+    color: var(--ink-50);
+    font-weight: 400;
+  }
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  .btn-donate {
+    background: var(--chc-magenta);
+    color: var(--white);
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+  }
+  .btn-donate:hover { background: var(--chc-magenta-dark); }
+  .btn-donate::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    background: currentColor;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>") center/contain no-repeat;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>") center/contain no-repeat;
+  }
+  .btn-monthly {
+    background: var(--white);
+    color: var(--chc-magenta);
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    border: 2px solid var(--chc-magenta);
+    transition: all 0.2s;
+  }
+  .btn-monthly:hover {
+    background: var(--chc-magenta);
+    color: var(--white);
+  }
+
+  .nav-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo img {
+    height: 60px;
+    width: auto;
+    display: block;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .nav-links a {
+    color: var(--chc-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-links a:hover { color: var(--chc-magenta); }
+  .nav-links a::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: currentColor;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>") center/contain no-repeat;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>") center/contain no-repeat;
+  }
+
+  /* ========== HERO (matches live site exactly) ========== */
+  .hero {
+    background: linear-gradient(180deg, var(--chc-blue-dark) 0%, var(--chc-blue-darker) 100%);
+    color: var(--white);
+    padding: 90px 0 110px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  /* Decorative pattern in background — subtle shapes like live site */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 35%, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 40px, transparent 41px),
+      radial-gradient(circle at 85% 25%, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 60px, transparent 61px),
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 30px, transparent 31px),
+      radial-gradient(circle at 90% 75%, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 45px, transparent 46px);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: clamp(40px, 5.5vw, 64px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+    color: var(--white);
+  }
+  .hero-divider {
+    width: 90px;
+    height: 4px;
+    background: var(--chc-yellow);
+    margin: 0 auto 32px;
+    border-radius: 2px;
+  }
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.92);
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* ========== GIVE NOW CARDS ========== */
+  .give-primary {
+    margin-top: -60px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 80px;
+  }
+  .give-primary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .give-card-primary {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 44px;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+    border-top: 5px solid var(--chc-magenta);
+  }
+  .give-card-primary:hover {
+    transform: translateY(-4px);
+  }
+  .give-card-primary.featured {
+    background: var(--chc-blue);
+    color: var(--white);
+    border-top-color: var(--chc-yellow);
+  }
+  .give-card-primary.featured::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(245,197,24,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 3px;
+    width: fit-content;
+    background: var(--chc-blue-light);
+    color: var(--chc-blue);
+  }
+  .give-card-primary.featured .card-badge {
+    background: rgba(245,197,24,0.25);
+    color: var(--chc-yellow);
+  }
+  .card-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .give-card-primary h2 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    color: var(--chc-blue);
+  }
+  .give-card-primary.featured h2 { color: var(--white); }
+  .give-card-primary p {
+    color: var(--ink-70);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .give-card-primary.featured p { color: rgba(255,255,255,0.9); }
+
+  .give-btn {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--chc-magenta);
+    color: var(--white);
+    padding: 14px 30px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+  }
+  .give-btn:hover {
+    background: var(--chc-magenta-dark);
+    transform: translateX(2px);
+  }
+  .give-card-primary.featured .give-btn {
+    background: var(--chc-yellow);
+    color: var(--chc-blue-darker);
+  }
+  .give-card-primary.featured .give-btn:hover {
+    background: #e0b314;
+  }
+
+  /* ========== MORE WAYS SECTION ========== */
+  .more-ways {
+    padding: 40px 0 100px;
+    position: relative;
+  }
+  .section-head {
+    max-width: 820px;
+    margin-bottom: 48px;
+  }
+  .section-head h2 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: clamp(34px, 4.5vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--chc-blue);
+    margin-bottom: 20px;
+  }
+  .section-divider {
+    width: 70px;
+    height: 4px;
+    background: var(--chc-yellow);
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+  .section-head p {
+    font-size: 17px;
+    color: var(--ink-70);
+    line-height: 1.65;
+    max-width: 720px;
+  }
+
+  /* ========== CATEGORY PILLS ========== */
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 48px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .pill {
+    padding: 11px 22px;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    border: 2px solid transparent;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--chc-blue);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .pill:hover {
+    background: var(--chc-blue-light);
+    border-color: var(--chc-blue);
+  }
+  .pill.active {
+    background: var(--chc-blue);
+    border-color: var(--chc-blue);
+    color: var(--white);
+  }
+  .pill .count {
+    margin-left: 6px;
+    opacity: 0.6;
+    font-weight: 600;
+  }
+
+  /* ========== CARDS GRID ========== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    min-height: 400px;
+  }
+  .gift-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.4s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .gift-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--chc-yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .gift-card:hover {
+    border-color: var(--chc-blue);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .gift-card:hover::before { transform: scaleX(1); }
+  .gift-card .tag {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-50);
+  }
+  .gift-card .icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--chc-blue-light);
+    border-radius: 10px;
+    color: var(--chc-blue);
+    margin-bottom: 4px;
+  }
+  .gift-card h3 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--chc-blue);
+  }
+  .gift-card p {
+    font-size: 15px;
+    color: var(--ink-70);
+    line-height: 1.55;
+    flex-grow: 1;
+  }
+  .gift-card .link {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--chc-magenta);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+  .gift-card:hover .link { gap: 10px; }
+
+  /* ========== HELP BANNER ========== */
+  .help-banner {
+    margin-top: 80px;
+    background: var(--chc-blue);
+    border-radius: var(--radius-lg);
+    padding: 52px 56px;
+    color: var(--white);
+    display: grid;
+    grid-template-columns: 1.5fr auto;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .help-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--chc-yellow);
+  }
+  .help-banner::after {
+    content: '';
+    position: absolute;
+    right: -80px;
+    bottom: -80px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(245,197,24,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .help-banner h3 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .help-banner p {
+    color: rgba(255,255,255,0.9);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 540px;
+  }
+  .help-banner .give-btn {
+    position: relative;
+    z-index: 1;
+    background: var(--chc-yellow);
+    color: var(--chc-blue-darker);
+  }
+  .help-banner .give-btn:hover {
+    background: #e0b314;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .nav-utility { display: none; }
+  }
+  @media (max-width: 860px) {
+    .container { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-top { margin-bottom: 0; }
+    .hero { padding: 60px 0 90px; }
+    .give-primary-grid { grid-template-columns: 1fr; }
+    .cards-grid { grid-template-columns: 1fr 1fr; }
+    .more-ways { padding: 40px 0 80px; }
+    .help-banner { grid-template-columns: 1fr; padding: 36px 32px; }
+    .logo img { height: 48px; }
+  }
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .give-card-primary { padding: 32px; }
+    .give-card-primary h2 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MAIN NAV -->
+<nav class="nav">
+  <div class="container">
+    <!-- Top utility row -->
+    <div class="nav-top">
+      <div class="nav-utility">
+        <a href="#">🔍 Search</a>
+        <a href="#">Contact Us</a>
+        <span class="divider">|</span>
+        <a href="#">👤 Login</a>
+        <span class="divider">|</span>
+        <a href="#">Sign Up</a>
+      </div>
+      <div class="nav-buttons">
+        <a href="#" class="btn-donate">Donate</a>
+        <a href="#" class="btn-monthly">Give Monthly</a>
+      </div>
+    </div>
+    <!-- Main nav row -->
+    <div class="nav-main">
+      <a href="#" class="logo">
+        <img src="Foundation_Logo_4C.png" alt="Children's Hospital Colorado Foundation">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#">Ways to Give</a></li>
+        <li><a href="#">Get Involved</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Your Impact</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-content">
+    <h1>Ways to Give to Children's Hospital Colorado</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">There are many ways to give to Children's Hospital Colorado, each offering a meaningful way to support patients, families, and lifesaving care. Whether you're making a one-time gift or exploring long-term giving options, your generosity makes a lasting impact.</p>
+  </div>
+</section>
+
+<!-- GIVE NOW / GIVE MONTHLY PRIMARY CARDS -->
+<section class="container give-primary">
+  <div class="give-primary-grid">
+    <div class="give-card-primary">
+      <span class="card-badge"><span class="dot"></span>One-Time Gift</span>
+      <h2>Give Now</h2>
+      <p>Make an immediate impact on the kids and families who need care today. Your gift goes directly to the most urgent needs at Children's Hospital Colorado.</p>
+      <a href="#" class="give-btn">
+        Give Now
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="give-card-primary featured">
+      <span class="card-badge"><span class="dot"></span>Most Impactful</span>
+      <h2>Give Monthly</h2>
+      <p>Become a sustaining partner. Monthly giving provides dependable support that helps us plan for the future, fund long-term research, and be ready when families need us most.</p>
+      <a href="#" class="give-btn">
+        Start Monthly Giving
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MORE WAYS TO GIVE -->
+<section class="more-ways">
+  <div class="container">
+    <div class="section-head">
+      <h2>More Ways to Give</h2>
+      <div class="section-divider"></div>
+      <p>From stock transfers to planned gifts, donor-advised funds to corporate partnerships — our team is experienced in accepting gifts of every kind. Browse by category to explore what works best for your goals.</p>
+    </div>
+
+    <!-- CATEGORY PILLS -->
+    <div class="pills" role="tablist">
+      <button class="pill active" data-category="all">All Options <span class="count">12</span></button>
+      <button class="pill" data-category="own">Give What You Own <span class="count">4</span></button>
+      <button class="pill" data-category="savings">Give from Savings or Income <span class="count">3</span></button>
+      <button class="pill" data-category="future">Plan for the Future <span class="count">1</span></button>
+      <button class="pill" data-category="partner">Partner With Us <span class="count">2</span></button>
+      <button class="pill" data-category="other">Other Ways to Give <span class="count">5</span></button>
+    </div>
+
+    <!-- CARDS GRID -->
+    <div class="cards-grid" id="cards-grid"></div>
+
+    <!-- HELP BANNER -->
+    <div class="help-banner">
+      <div>
+        <h3>Not sure which option fits your goals?</h3>
+        <p>Our philanthropy team has helped thousands of donors structure gifts that work for their families, their taxes, and the causes they care about. A 15-minute conversation can help you find the right path.</p>
+      </div>
+      <a href="#" class="give-btn">
+        Talk to Our Team
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const gifts = [
+    // GIVE WHAT YOU OWN
+    { cat: 'own', tag: 'Appreciated Assets', title: 'Stock & Securities', desc: 'Donate appreciated stock to avoid capital gains tax and receive a charitable deduction for the full market value.', icon: 'trending' },
+    { cat: 'own', tag: 'Tangible Assets', title: 'Real Estate, Vehicles & More', desc: 'Turn property, vehicles, or other valuable assets into meaningful support for kids and families.', icon: 'home' },
+    { cat: 'own', tag: 'Digital Assets', title: 'Cryptocurrency', desc: 'Give Bitcoin, Ethereum, and other cryptocurrencies directly — often with significant tax advantages.', icon: 'crypto' },
+    { cat: 'own', tag: 'Business Assets', title: 'Business Interests', desc: 'Gift privately held stock, partnership interests, or business proceeds to maximize your impact.', icon: 'briefcase' },
+
+    // GIVE FROM SAVINGS OR INCOME
+    { cat: 'savings', tag: 'DAF', title: 'Donor-Advised Funds', desc: 'Recommend a grant from your DAF at Fidelity, Schwab, Vanguard, or your community foundation.', icon: 'funds' },
+    { cat: 'savings', tag: 'IRA / 401(k)', title: 'Retirement Plans', desc: 'Make tax-free gifts from your IRA (QCDs) or name us as a beneficiary of your retirement account.', icon: 'piggy' },
+    { cat: 'savings', tag: 'Policy Gifts', title: 'Life Insurance', desc: 'Name Children\'s Hospital Colorado Foundation as a beneficiary, or donate a paid-up policy you no longer need.', icon: 'shield' },
+
+    // PLAN FOR THE FUTURE
+    { cat: 'future', tag: 'Legacy', title: 'Planned Gifts', desc: 'Include us in your will, trust, or beneficiary designations to create a lasting legacy for pediatric care.', icon: 'tree' },
+
+    // PARTNER WITH US
+    { cat: 'partner', tag: 'Corporate', title: 'Corporate Philanthropy', desc: 'Sponsorships, cause-marketing, workplace giving, and strategic partnerships that align your brand with pediatric health.', icon: 'handshake' },
+    { cat: 'partner', tag: 'Grants', title: 'Foundation Grants', desc: 'Partner with us on funding opportunities that advance research, clinical care, and community health programs.', icon: 'grant' },
+
+    // OTHER WAYS TO GIVE
+    { cat: 'other', tag: 'Tax Credit', title: 'Enterprise Zone', desc: 'Colorado taxpayers can receive up to a 25% state tax credit on qualifying gifts of $250 or more.', icon: 'colorado' },
+    { cat: 'other', tag: 'Signature Program', title: 'Mighty Millions Raffle', desc: 'Buy a ticket for a chance to win life-changing prizes — and help kids at the same time.', icon: 'ticket' },
+    { cat: 'other', tag: 'National Partner', title: "Children's Miracle Network", desc: 'Support our local hospital through CMN partners, fundraisers, and national campaigns.', icon: 'miracle' },
+    { cat: 'other', tag: 'Retail', title: 'Shop to Support', desc: 'Round up at checkout, buy cause-marketing products, or shop partner brands that give back.', icon: 'bag' },
+    { cat: 'other', tag: 'In-Kind', title: 'In-Kind & Auction Items', desc: 'Donate goods, services, or auction items to support signature events and hospital programs.', icon: 'gift' },
+  ];
+
+  const icons = {
+    trending: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+    home: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+    crypto: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 7h5a3 3 0 0 1 0 6H8m0 0h6a3 3 0 0 1 0 6H8m2-12v14"/></svg>',
+    briefcase: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+    funds: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+    piggy: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+    shield: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+    tree: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 9l7-7 7 7M7 14l5-5 5 5M9 19l3-3 3 3"/></svg>',
+    handshake: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l2 2 4-4M3 7l3-3h4l2 2 2-2h4l3 3v4l-3 3-2-2-2 2-2-2-3 3H7L3 11z"/></svg>',
+    grant: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>',
+    colorado: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>',
+    ticket: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4z"/><line x1="12" y1="5" x2="12" y2="19" stroke-dasharray="2 2"/></svg>',
+    miracle: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-7 11-7 11"/></svg>',
+    bag: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2l-3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8l-3-6z"/><line x1="3" y1="8" x2="21" y2="8"/><path d="M16 12a4 4 0 0 1-8 0"/></svg>',
+    gift: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>',
+  };
+
+  function renderCards(category) {
+    const grid = document.getElementById('cards-grid');
+    const filtered = category === 'all' ? gifts : gifts.filter(g => g.cat === category);
+    grid.innerHTML = filtered.map(g => `
+      <a href="#" class="gift-card">
+        <div class="icon">${icons[g.icon] || ''}</div>
+        <span class="tag">${g.tag}</span>
+        <h3>${g.title}</h3>
+        <p>${g.desc}</p>
+        <span class="link">Learn More <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    `).join('');
+  }
+
+  document.querySelectorAll('.pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      renderCards(pill.dataset.category);
+    });
+  });
+
+  renderCards('all');
+</script>
+
+</body>
+</html>
